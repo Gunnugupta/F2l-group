@@ -65,22 +65,8 @@ async def link_handler(client: Client, message: Message):
             await message.reply_text("🔒 The bot needs admin rights in this group to function properly.", quote=True)
             return
 
-        await process_media_messages(client, message, reply_msg)
+        await process_media_message(client, message, reply_msg)
 
-        msg_text1 = (
-            f"📥 <b>Download Link:</b>\n<code>{online_link}</code>\n\n"
-            "⏰ <b>Note:</b> Links are available as long as the bot is active."
-        )
-
-        await command_message.reply_text(
-            msg_text1,
-            quote=True,
-            disable_web_page_preview=True,
-            reply_markup=InlineKeyboardMarkup([
-                [InlineKeyboardButton("🖥️ Watch Now", url=stream_link), 
-                 InlineKeyboardButton("📥 Download", url=online_link)]
-            ])
-        )  # Process the media file
         
 @StreamBot.on_message(filters.private & (filters.document | filters.video | filters.audio | filters.photo), group=4)
 async def private_receive_handler(client: Client, message: Message):
