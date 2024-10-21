@@ -76,12 +76,12 @@ async def process_media_message1(client: Client, command_message: Message, media
         media_size = humanbytes(get_media_file_size(media_message))
 
         # Create a message with the details
-        msg_text = (
+        msg_text1 = (
             f"<code>{online_link}</code>"
         )
 
         await command_message.reply_text(
-            msg_text,
+            msg_text1,
             quote=True,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup([
@@ -106,7 +106,12 @@ async def process_media_message(client: Client, command_message: Message, media_
 
         # Create a message with the details
         msg_text = (
-            f"<code>{online_link}</code>"
+            "🔗 <b>Your Links are Ready!</b>\n\n"
+            f"📄 <b>File Name:</b> <i>{media_name}</i>\n\n"
+            f"📂 <b>File Size:</b> <i>{media_size}</i>\n\n"
+            f"📥 <b>Download Link:</b>\n<code>{online_link}</code>\n\n"
+            f"🖥️ <b>Watch Now:</b>\n<code>{stream_link}</code>\n\n"
+            "⏰ <b>Note:</b> Links are available as long as the bot is active."
         )
 
         await command_message.reply_text(
