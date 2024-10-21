@@ -66,29 +66,6 @@ async def link_handler(client: Client, message: Message):
             return
 
     await process_media_message1(client, message, reply_msg)  # Process the media file
-
-async def process_media_message1(client: Client, command_message: Message, media_message: Message):
-    """Process the media message and generate streaming and download links."""
-    try:
-        log_msg = await media_message.forward(chat_id=Var.BIN_CHANNEL)  # Forward media to log channel
-        stream_link, online_link = await generate_links(log_msg)
-        media_name = get_name(log_msg)
-        media_size = humanbytes(get_media_file_size(media_message))
-
-        # Create a message with the details
-        msg_text1 = (
-            f"<code>{online_link}</code>"
-        )
-
-        await command_message.reply_text(
-            msg_text1,
-            quote=True,
-            disable_web_page_preview=True,
-            reply_markup=InlineKeyboardMarkup([
-                [InlineKeyboardButton("🖥️ Watch Now", url=stream_link), 
-                 InlineKeyboardButton("📥 Download", url=online_link)]
-            ])
-        )
         
 @StreamBot.on_message(filters.private & (filters.document | filters.video | filters.audio | filters.photo), group=4)
 async def private_receive_handler(client: Client, message: Message):
