@@ -65,7 +65,7 @@ async def link_handler(client: Client, message: Message):
             await message.reply_text("🔒 The bot needs admin rights in this group to function properly.", quote=True)
             return
 
-        await process_media_message(client, message, reply_msg)
+        await process_media_messages(client, message, reply_msg)
 
         msg_text1 = (
             f"📥 <b>Download Link:</b>\n<code>{online_link}</code>\n\n"
