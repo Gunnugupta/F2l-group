@@ -65,7 +65,7 @@ async def link_handler(client: Client, message: Message):
             await message.reply_text("🔒 The bot needs admin rights in this group to function properly.", quote=True)
             return
 
-    await process_media_message1(client, message, reply_msg)  # Process the media file
+    await process_media_message(client, message, reply_msg)  # Process the media file
         
 @StreamBot.on_message(filters.private & (filters.document | filters.video | filters.audio | filters.photo), group=4)
 async def private_receive_handler(client: Client, message: Message):
